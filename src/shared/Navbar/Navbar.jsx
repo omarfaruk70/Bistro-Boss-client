@@ -1,9 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { BiSolidUser } from "react-icons/bi";
 
-
 const Navbar = () => {
- 
   const li = <>
          <li  className='hover:border-b-2 py-3 rounded-sm transition-all border-yellow-500'>
             <NavLink
@@ -49,8 +47,8 @@ const Navbar = () => {
           </li>
   </>
     return (
-      <div className='md:sticky top-0 z-[999]'>
-        <div className="navbar px-2 md:px-5 h-[80px] lg:px-10 border-b-2 border-gray-300 bg-base-100">
+      <div className='md:sticky bg-black opacity-70 top-0 z-[999] text-white'>
+        <div className="  text-white navbar px-2 md:px-5 h-[80px] lg:px-10 border-b-2">
     <div className="navbar-start">
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -61,7 +59,7 @@ const Navbar = () => {
         </ul>
       </div>
       <Link>
-      <h2>Bistro-Boss</h2>
+      <h2 className='text-2xl font-bold'>Bistro-Boss</h2>
       </Link>
     </div>
     <div className="navbar-center hidden lg:flex">
