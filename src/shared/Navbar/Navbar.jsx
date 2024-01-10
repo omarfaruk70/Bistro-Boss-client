@@ -26,9 +26,9 @@ const Navbar = () => {
                   ? "text-white bg-amber-400 font-bold"
                   : ""
               }
-              to={"/"}
+              to={"/menu"}
             >
-              All Food
+              Menus
             </NavLink>
           </li >
           <li className='hover:border-b-2 py-3 rounded-sm transition-all border-yellow-500'>
