@@ -10,7 +10,7 @@ import slide6 from "../assets/home/06.png";
 const Banner = () => {
   return (
     <div>
-      <div>
+      <div className="text-center">
         <Carousel useKeyboardArrows={true}>
           <div>
             <img src={slide1} />

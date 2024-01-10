@@ -18,7 +18,7 @@ const Menus = () => {
             heading='From Our Menus'
             subheading='Popular item'
             ></Sectiontitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 mb-5">
                 {
                     menus.map(menu => <Menuitem
                     key={menu._id}
