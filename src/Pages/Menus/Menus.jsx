@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import Menuitem from "../../shared/Menuitem/Menuitem";
 import useMenu from '../../hooks/useMenu';
 const Menus = () => {
