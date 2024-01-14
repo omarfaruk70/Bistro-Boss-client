@@ -16,49 +16,43 @@ const Menu = () => {
   const pizza = menu.filter((item) => item.category === "pizza");
   const salad = menu.filter((item) => item.category === "salad");
   const soup = menu.filter((item) => item.category === "soup");
+  const drinks = menu.filter((item) => item.category === "drinks");
   return (
     <>
       <Helmet>
         <title>Bistro Boss | Menu</title>
       </Helmet>
-      <Menucover
-        img={menuBg}
-        title={"Our Menu"}
-        paragraph={"Would you like to try a dish?"}
-      ></Menucover>
-      <Sectiontitle
-        subheading="Don't Miss"
-        heading="Today's Offer"
-      ></Sectiontitle>
+      <Menucover img={menuBg} title={"Our Menu"} paragraph={"Would you like to try a dish?"}></Menucover>
+      <Sectiontitle subheading="Don't Miss" heading="Today's Offer"></Sectiontitle>
+
+      {/* ======================= menu items ================== */}
       {/* offered items */}
       <MenuCategory items={offered}></MenuCategory>
       {/* desert menu items */}
-      <MenuCategory
-      items={dessert}
-        title="deserts"
-        paragraph="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-        coverImg={desertBg}
+      <MenuCategory items={dessert} title="deserts"
+      paragraph="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      coverImg={desertBg}
       ></MenuCategory>
+      
       {/* pizza menu item */}
-      <MenuCategory
-      items={pizza}
-        title="Pizza"
+      <MenuCategory items={pizza} title="pizza"
         paragraph="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         coverImg={pizzaBg}
       ></MenuCategory>
       {/* salad menu item */}
-      <MenuCategory
-      items={salad}
-        title="Salad"
+      <MenuCategory items={salad} title="salad"
         paragraph="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         coverImg={saladBg}
       ></MenuCategory>
       {/* soup menu item */}
-      <MenuCategory
-      items={soup}
-        title="Soup"
+      <MenuCategory items={soup} title="soup"
         paragraph="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         coverImg={soupBg}
+      ></MenuCategory>
+      {/* drinks menu item */}
+      <MenuCategory items={drinks} title="drinks"
+        paragraph="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        coverImg={menuBg}
       ></MenuCategory>
 
     </>
