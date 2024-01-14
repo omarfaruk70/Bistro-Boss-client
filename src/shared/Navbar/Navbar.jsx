@@ -40,9 +40,9 @@ const Navbar = () => {
                   ? "text-white bg-amber-400  font-bold"
                   : " "
               }
-              to={"/"}
+              to={"/order"}
             >
-              Blog
+              Order
             </NavLink>
           </li>
   </>
