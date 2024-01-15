@@ -1,7 +1,24 @@
 import { Link, NavLink } from 'react-router-dom';
 import { BiSolidUser } from "react-icons/bi";
+import { useContext } from 'react';
+import { AuthContext } from '../../../Providers/AuthProviders';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+  const {user, logoutUser} = useContext(AuthContext);
+  const handleLogOut = () => {
+    logoutUser()
+    .then(() => {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Logged Out successful",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
+  }
+  console.log(user);
   const li = <>
          <li  className='hover:border-b-2 py-3 rounded-sm transition-all border-yellow-500'>
             <NavLink
@@ -86,7 +103,9 @@ const Navbar = () => {
       </ul>
       </div>
     </div> 
-    <Link to={'/login'} className="btn glass"><BiSolidUser className='text-2xl text-yellow-500' />Login</Link>
+    {user ? <Link onClick={handleLogOut} className="btn glass"><BiSolidUser className='text-2xl text-yellow-500' />Log out</Link>
+    :
+    <Link to={'/login'} className="btn glass"><BiSolidUser className='text-2xl text-yellow-500' />Login</Link>}
     </div>
         </div>
      </div>

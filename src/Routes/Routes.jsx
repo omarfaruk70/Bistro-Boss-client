@@ -5,11 +5,13 @@ import Menu from "../Menu/Menu";
 import Order from "../Order/Order";
 import Login from "../Pages/Login/Login";
 import Register from "../Register/Register";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <div className="flex justify-center items-center h-screen">SOrry ! There is no time for creating attractive error page</div>,
     children: [
         {
             path: '/',
@@ -17,7 +19,7 @@ const router = createBrowserRouter([
         },
         {
           path: '/menu',
-          element: <Menu></Menu>
+          element: <PrivateRoutes><Menu></Menu></PrivateRoutes>
         },
         {
           path: '/order/:category',
