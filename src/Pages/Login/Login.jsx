@@ -9,9 +9,9 @@ const Login = () => {
     const [disabled, setDisabled] = useState(true);    // initial login button disabled
     const handleLogin = (event) =>{
         event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
+        // const form = event.target;
+        // const email = form.email.value;
+        // const password = form.password.value;
     }
     const handleValidateCaptcha = () => {
         const user_captcha_value = captchaRef.current.value;

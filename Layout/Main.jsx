@@ -4,14 +4,12 @@ import Navbar from "../src/shared/Navbar/Navbar";
 
 const Main = () => {
     const location = useLocation();
-    const loginPage = location.pathname.includes('login');
-    const registerPage = location.pathname.includes('register');
-    
-    return (
+    const loginRegisterPage = location.pathname.includes('login') || location.pathname.includes('register');
+    return (    
         <div>
-            {(loginPage || registerPage) || <Navbar></Navbar>}
+            { loginRegisterPage || <Navbar></Navbar>}
             <Outlet></Outlet>
-            {(loginPage || registerPage) || <Footer></Footer>}
+            {loginRegisterPage || <Footer></Footer>}
         </div>
     );
 };
