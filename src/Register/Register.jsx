@@ -11,6 +11,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors  },
   } = useForm();
 
@@ -28,6 +29,8 @@ const Register = () => {
       timer: 1500
     });
     console.log(user);
+    reset()
+
     })
   };
 
