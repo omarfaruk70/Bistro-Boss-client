@@ -4,9 +4,12 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 import { FaCartShopping } from "react-icons/fa6";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
+  const [allcartItem] = useCart();
+  console.log(allcartItem);
   const handleLogOut = () => {
     logoutUser().then(() => {
       Swal.fire({
@@ -18,7 +21,6 @@ const Navbar = () => {
       });
     });
   };
-  console.log(user);
   const li = (
     <>
       <li className="hover:border-b-2 py-3 rounded-sm transition-all border-yellow-500">
@@ -128,7 +130,7 @@ const Navbar = () => {
           </div>
           <button className="btn mr-4">
           <FaCartShopping className="text-2xl" />
-            <div className="badge bg-yellow-500 text-white">+0</div>
+            <div className="badge bg-yellow-500 text-white">{allcartItem.length}</div>
           </button>
           {user ? (
             <Link onClick={handleLogOut} className="btn glass">
