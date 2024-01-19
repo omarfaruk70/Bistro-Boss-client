@@ -9,7 +9,6 @@ import useCart from "../../hooks/useCart";
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const [allcartItem] = useCart();
-  console.log(allcartItem);
   const handleLogOut = () => {
     logoutUser().then(() => {
       Swal.fire({
@@ -128,10 +127,12 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
+          <Link to={'/dashboard/cart'}>
           <button className="btn mr-4">
           <FaCartShopping className="text-2xl" />
             <div className="badge bg-yellow-500 text-white">{allcartItem.length}</div>
           </button>
+          </Link>
           {user ? (
             <Link onClick={handleLogOut} className="btn glass">
               <BiSolidUser className="text-2xl text-yellow-500" />
