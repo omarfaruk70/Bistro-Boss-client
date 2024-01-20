@@ -1,12 +1,42 @@
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import { MdDelete } from "react-icons/md";
 
 const Cart = () => {
-  const [allcartItem] = useCart();
+  const [allcartItem, refetch] = useCart();
   let totalPrice = 0;
   allcartItem.forEach((item) => {
     totalPrice = totalPrice + item.price;
   });
+  const axiosSecure = useAxiosSecure();
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/deleteitemfromMycart/${id}`)
+        .then(res => {
+          console.log(res.data);
+          if(res.data.deletedCount === 1){
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            }); 
+            refetch();
+          }
+        })
+       
+      }
+    });
+  }
   return (
     <div>
       <div className="bg-yellow-400 py-5 flex justify-evenly items-center p-5 rounded-bl-3xl rounded-br-3xl">
@@ -45,9 +75,9 @@ const Cart = () => {
                 <td className="text-xl">{item.name}</td>
                 <td className="text-2xl">{item.price} <span className="text-base font-bold">$</span></td>
                 <th>
-                  <button className="btn">
+                  <button onClick={()=> handleDelete(item._id)} className="btn">
                    <MdDelete className="text-2xl text-red-500"></MdDelete>
-                    Button
+                    Delete
                   </button>
                 </th>
               </tr>
