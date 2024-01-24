@@ -1,48 +1,46 @@
 // this register page all uses react hook form
 
-import { useContext} from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../src/hooks/useAxiosPublic";
+import SocialLogin from "../SocialLogin/SocialLogin";
+
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors  },
+    formState: { errors },
   } = useForm();
 
   const { registerUser } = useContext(AuthContext);
   const onSubmit = (data) => {
-    console.log(data);
-    registerUser(data.email, data.password)
-    .then(result => {
-     const user = result.user;
-     Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "user is registered",
-      showConfirmButton: false,
-      timer: 1500
+    registerUser(data.email, data.password).then(() => {
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "user is registered",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          reset();
+        }
+      });
     });
-    console.log(user);
-    reset()
-
-    })
   };
 
-  // const handleRegister = (event) => {
-  //   event.preventDefault();
-  //   const form = event.target;
-  //   const email = form.email.value;
-  //   const password = form.password.value;
-  //   registerUser(email, password).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
   return (
     <div className="hero min-h-screen bg-base-200">
       <Helmet>
@@ -66,11 +64,15 @@ const Register = () => {
               <input
                 type="name"
                 // name="name"
-                {...register("name", {required: true})} //---- > its like name="name" property
+                {...register("name", { required: true })} //---- > its like name="name" property
                 placeholder="name"
                 className="input input-bordered"
               />
-              {errors.name && <span className="font-thin text-red-500 text-start mt-1">Name is required</span>}
+              {errors.name && (
+                <span className="font-thin text-red-500 text-start mt-1">
+                  Name is required
+                </span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -79,11 +81,15 @@ const Register = () => {
               <input
                 type="email"
                 // name="email"
-                {...register("email", {required: true})}
+                {...register("email", { required: true })}
                 placeholder="email"
                 className="input input-bordered"
               />
-              {errors.email && <span className="font-thin text-red-500 text-start mt-1">Email is required</span>}
+              {errors.email && (
+                <span className="font-thin text-red-500 text-start mt-1">
+                  Email is required
+                </span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -92,18 +98,37 @@ const Register = () => {
               <input
                 type="password"
                 // name="password"
-                {...register("password", {required: true,
-                   minLength: 6 ,
-                   maxLength: 20,
-                   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/})}
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 20,
+                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                })}
                 placeholder="password"
                 className="input input-bordered"
                 autoComplete="true"
               />
-              {errors.password?.type === 'required' && <span className="font-thin text-red-500 text-start mt-1">Password is required</span>}
-              {errors.password?.type === 'minLength' && <span className="font-thin text-red-500 text-start mt-1">Password must be 6 characters</span>}
-              {errors.password?.type === 'MaxLength' && <span className="font-thin text-red-500 text-start mt-1">Password must be less then 20 characters</span>}
-              {errors.password?.type === 'pattern' && <span className="font-thin text-red-500 text-start mt-1">Password must have one uppercase, one lowercase, one number and one special character</span>}
+              {errors.password?.type === "required" && (
+                <span className="font-thin text-red-500 text-start mt-1">
+                  Password is required
+                </span>
+              )}
+              {errors.password?.type === "minLength" && (
+                <span className="font-thin text-red-500 text-start mt-1">
+                  Password must be 6 characters
+                </span>
+              )}
+              {errors.password?.type === "MaxLength" && (
+                <span className="font-thin text-red-500 text-start mt-1">
+                  Password must be less then 20 characters
+                </span>
+              )}
+              {errors.password?.type === "pattern" && (
+                <span className="font-thin text-red-500 text-start mt-1">
+                  Password must have one uppercase, one lowercase, one number
+                  and one special character
+                </span>
+              )}
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
@@ -122,10 +147,9 @@ const Register = () => {
                 className="btn bg-black text-white"
                 value={"Sign Up"}
               />
-              {/* <button type="submit" className="btn bg-black text-white">
-                Sign Up
-              </button> */}
             </div>
+            <div className="divider">Continue with</div>
+            <SocialLogin></SocialLogin>
           </form>
         </div>
       </div>
