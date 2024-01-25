@@ -10,14 +10,27 @@ const Allusers = () => {
     const {data: users = [], refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const response = await axiosSecure.get('/allusers')
+            const response = await axiosSecure.get('/allusers') 
             .then(result => {
                return result.data ;
             })  
             return response
         }
     })
-    const handleMakeAdmin = () => {
+    const handleMakeAdmin = (user) => {
+      axiosSecure.patch(`/allusers/makeAdmin/${user._id}`)
+      .then((res) => {
+        if(res.data.modifiedCount > 0){
+          refetch();  
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} is now An Admin`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
 
     }
     const handleDeleteUser = (userId) => {
@@ -71,9 +84,10 @@ const Allusers = () => {
                 <td className="text-xl">{user.name}</td>
                 <td className="text-xl">{user.email}</td>
                 <td className="text-2xl">
-                <button onClick={() => handleMakeAdmin(user._id)} className="btn bg-yellow-400">
+                {user.role === 'admin' ? "Admin" :
+                <button onClick={() => handleMakeAdmin(user)} className="btn bg-yellow-400">
                    <FaUsers className="text-2xl text-white"></FaUsers>
-                  </button>
+                  </button> }
                 </td>
                 <th>
                   <button onClick={() => handleDeleteUser(user._id)} className="btn">
