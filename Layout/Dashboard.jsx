@@ -10,9 +10,10 @@ import {
 import { FaHome, FaSearch } from "react-icons/fa";
 import { BsListCheck } from "react-icons/bs";
 import { BiSolidStarHalf } from "react-icons/bi";
+import useAdmin from "../src/hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div>
       <div className="flex">
