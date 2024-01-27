@@ -38,7 +38,7 @@ const AuthProviders = ({children}) => {
                 axiosPublic.post('/jwt', userInfo)
                 .then(res =>{
                     if(res.data.AccessToken){
-                        localStorage.setItem('accessToken', res.data.AccessToken)
+                        localStorage.setItem('accessToken', res.data?.AccessToken)
                     }
                 })
 
