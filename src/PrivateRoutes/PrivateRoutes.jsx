@@ -6,17 +6,20 @@ const PrivateRoutes = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
   if (loading) {
-    <div className="flex flex-col justify-center items-center h-screen">
-       <div className="flex flex-col justify-center items-center h-screen">
-        <span className="loading loading-bars w-32  font-bold"></span>
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <div className="flex flex-col justify-center items-center h-screen">
+          <span className="loading loading-bars w-32  font-bold"></span>
+        </div>
+        ;
       </div>
-      ;
-    </div>;
+    );
   }
   if (user) {
     return children;
   }
-  return <Navigate to={"/login"} state={{ from: location }} replace></Navigate>;
+  console.log(user);
+  return <Navigate state={{ from: location }} to={"/login"}></Navigate>;
 };
 
 export default PrivateRoutes;
