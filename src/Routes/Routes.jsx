@@ -11,6 +11,7 @@ import Allusers from "../Allusers/Allusers";
 import AddItems from "../Pages/Dashboard/AddItems/AddItems";
 import AdminRoutes from "../PrivateRoutes/AdminRoutes";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
 
 const router = createBrowserRouter([
   {
@@ -51,12 +52,16 @@ const router = createBrowserRouter([
       }, 
       // admin only routes
       {
-        path: 'allusers',
-        element:<AdminRoutes><Allusers></Allusers></AdminRoutes>
+        path: '/dashboard/additems',
+        element:<AdminRoutes><AddItems></AddItems></AdminRoutes>
       },
       {
-        path: 'additems',
-        element:<AdminRoutes><AddItems></AddItems></AdminRoutes>
+        path: '/dashboard/manageitems',
+        element: <AdminRoutes><ManageItems></ManageItems></AdminRoutes>
+      },
+      {
+        path: 'allusers',
+        element:<AdminRoutes><Allusers></Allusers></AdminRoutes>
       }
     ]
   }
