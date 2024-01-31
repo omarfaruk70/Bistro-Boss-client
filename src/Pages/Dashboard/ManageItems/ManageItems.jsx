@@ -4,6 +4,7 @@ import useMenu from "../../../hooks/useMenu";
 import { FaRegEdit } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [menu, , refetch] = useMenu();
@@ -32,9 +33,6 @@ const ManageItems = () => {
         }
       }
     });
-  };
-  const handleEditItem = async (item) => {
-    console.log(item);
   };
   return (
     <div>
@@ -75,12 +73,13 @@ const ManageItems = () => {
                     {item.price} <span className="font-bold text-sm">$</span>
                   </td>
                   <td className="text-2xl">
+                    <Link to={`/dashboard/updateitem/${item._id}`}>
                     <button
-                      onClick={() => handleEditItem(item)}
                       className="btn bg-yellow-300"
                     >
                       <FaRegEdit className="text-2xl text-white"></FaRegEdit>
                     </button>
+                    </Link>
                   </td>
                   <th>
                     <button
