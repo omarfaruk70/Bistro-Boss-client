@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [allcartItem, refetch] = useCart();
@@ -42,7 +43,7 @@ const Cart = () => {
         <h1>Total Orders: {allcartItem.length}</h1>
         <h1>Total Price: {totalPrice} $</h1>{" "}
         {/** alternative way to use math.reduce for calculating shopping cart */}
-        <button className="btn btn-outline">Pay</button>
+        <Link to='/dashboard/payment'><button className="btn btn-outline">Pay</button></Link>
       </div>
       {/* table */}
       <div className="overflow-x-auto">
