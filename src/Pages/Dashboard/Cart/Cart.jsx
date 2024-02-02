@@ -43,7 +43,8 @@ const Cart = () => {
         <h1>Total Orders: {allcartItem.length}</h1>
         <h1>Total Price: {totalPrice} $</h1>{" "}
         {/** alternative way to use math.reduce for calculating shopping cart */}
-        <Link to='/dashboard/payment'><button className="btn btn-outline">Pay</button></Link>
+        <Link to='/dashboard/payment
+        '><button className="btn btn-outline">Pay</button></Link>
       </div>
       {/* table */}
       <div className="overflow-x-auto">

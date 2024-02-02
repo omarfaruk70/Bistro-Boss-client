@@ -9,13 +9,15 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const UpdateItem = () => {
   const data = useLoaderData();
   const { _id, name, price, recipe, category } = data;
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { register, handleSubmit} = useForm();
   const IMG_HOSTING_API_KEY = import.meta.env.VITE_IMG_HOSTING_API_KEY;
   const Hosting_img_link = `https://api.imgbb.com/1/upload?key=${IMG_HOSTING_API_KEY}`;
   const handleUpdateItem = async (data) => {
     const imageFile = { image: data.image[0] };
     // kkhn o file type[img or anything] post korar jnno ekta header er vitor content-type: multipart/form-data set krte hy
-    const res = await useAxiosPublic.post(Hosting_img_link, imageFile, {
+    const res = await axiosPublic.post(Hosting_img_link, imageFile, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -28,7 +30,7 @@ const UpdateItem = () => {
         image: res.data.data.display_url,
         recipe: data.recipe,
       };
-      const menuRes = await useAxiosSecure.patch(`/menu/${_id}`, menuItem);
+      const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
       console.log(menuRes);
       // if (menuRes.data.insertedId) {
       //   Swal.fire({
