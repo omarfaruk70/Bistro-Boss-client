@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Sectiontitle from "../../../components/SectionTitle/SectionTitle";
 import { FaUtensils } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
@@ -31,16 +31,15 @@ const UpdateItem = () => {
         recipe: data.recipe,
       };
       const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
-      console.log(menuRes);
-      // if (menuRes.data.insertedId) {
-      //   Swal.fire({
-      //     position: "top-end",
-      //     icon: "success",
-      //     title: "Your item is added",
-      //     showConfirmButton: false,
-      //     timer: 1500,
-      //   });
-      // }
+      if (menuRes.data.modifiedCount > 0) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your item updated",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     }
   };
 

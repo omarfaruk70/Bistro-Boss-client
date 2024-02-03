@@ -23,7 +23,6 @@ const useAxiosSecure = () => {
     axiosInstance.interceptors.response.use(function (response) {
         return response;
       }, function (error) {
-        console.log(error);
         const statusCode = error.response.status;
         // for 401 or 403 status code . Logout the user and redirect user to the login page;
         if(statusCode === 401 || statusCode === 403){
