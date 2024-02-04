@@ -11,9 +11,11 @@ import { FaHome, FaSearch } from "react-icons/fa";
 import { BsListCheck } from "react-icons/bs";
 import { BiSolidStarHalf } from "react-icons/bi";
 import useAdmin from "../src/hooks/useAdmin";
+import useCart from "../src/hooks/useCart";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
+  const [allcartItem] = useCart();
   return (
     <div>
       <div className="flex">
@@ -78,7 +80,7 @@ const Dashboard = () => {
                 <li>
                   <NavLink to={"/dashboard/cart"}>
                     <FaCartShopping className="text-2xl"></FaCartShopping>
-                    My Cart
+                    My Cart({allcartItem.length})
                   </NavLink>
                 </li>
                 <li>
