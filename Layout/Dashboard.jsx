@@ -72,15 +72,15 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/dashboard/paymenthistory"}>
-                    <FaMoneyCheckDollar className="text-2xl"></FaMoneyCheckDollar>
-                    Payment History
-                  </NavLink>
-                </li>
-                <li>
                   <NavLink to={"/dashboard/cart"}>
                     <FaCartShopping className="text-2xl"></FaCartShopping>
                     My Cart({allcartItem.length})
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/dashboard/paymenthistory"}>
+                    <FaMoneyCheckDollar className="text-2xl"></FaMoneyCheckDollar>
+                    Payment History
                   </NavLink>
                 </li>
                 <li>

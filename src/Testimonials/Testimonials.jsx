@@ -17,7 +17,7 @@ const Testimonials = () => {
     .then(result => {
       setReviews(result.data)
     })
-  }, []);
+  }, [axios]);
   return (
     <div className="my-20">
       <Sectiontitle
