@@ -5,10 +5,12 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 import { FaCartShopping } from "react-icons/fa6";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const [allcartItem] = useCart();
+  const [isAdmin] = useAdmin();
   const handleLogOut = () => {
     logoutUser().then(() => {
       Swal.fire({
@@ -60,6 +62,36 @@ const Navbar = () => {
           Order
         </NavLink>
       </li>
+
+      {user && isAdmin &&  <li className="hover:border-b-2 py-3 rounded-sm transition-all border-yellow-500">
+        <NavLink
+          className={({ isActive, isPending }) =>
+            isPending
+              ? ""
+              : isActive
+              ? "text-white bg-amber-400  font-bold"
+              : " "
+          }
+          to={"/dashboard/userhome"}
+        >
+          User Dashboard
+        </NavLink>
+      </li>}
+      {user && !isAdmin &&  <li className="hover:border-b-2 py-3 rounded-sm transition-all border-yellow-500">
+        <NavLink
+          className={({ isActive, isPending }) =>
+            isPending
+              ? ""
+              : isActive
+              ? "text-white bg-amber-400  font-bold"
+              : " "
+          }
+          to={"/dashboard/adminhome"}
+        >
+          Admin Dashboard
+        </NavLink>
+      </li>}
+     
     </>
   );
   return (
