@@ -4,8 +4,8 @@ const UserHome = () => {
     const {user} = useContext(AuthContext)
     return (
         <div>
-              <h2 className="text-3xl font-bold">
-               <span> Hi welcome</span>
+              <h2 className="text-3xl font-bold text-center mt-8">
+               <span> Hi welcome </span>
                {user?.displayName ? user.displayName : "Back"}
             </h2>
         </div>

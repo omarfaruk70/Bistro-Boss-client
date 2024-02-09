@@ -74,7 +74,7 @@ const Navbar = () => {
           }
           to={"/dashboard/userhome"}
         >
-          User Dashboard
+          Admin Dashboard
         </NavLink>
       </li>}
       {user && !isAdmin &&  <li className="hover:border-b-2 py-3 rounded-sm transition-all border-yellow-500">
@@ -86,9 +86,9 @@ const Navbar = () => {
               ? "text-white bg-amber-400  font-bold"
               : " "
           }
-          to={"/dashboard/adminhome"}
+          to={"/dashboard/userhome"}
         >
-          Admin Dashboard
+          User Dashboard
         </NavLink>
       </li>}
      

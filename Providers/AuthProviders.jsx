@@ -38,15 +38,16 @@ const AuthProviders = ({children}) => {
                 axiosPublic.post('/jwt', userInfo)
                 .then(res =>{
                     if(res.data.AccessToken){
-                        localStorage.setItem('accessToken', res.data?.AccessToken)
+                        localStorage.setItem('accessToken', res.data?.AccessToken);
+                        setLoading(false);
                     }
                 })
 
             } else{
                 // Remove token: if token stored in the client side like: localStorage, caching, in memory;
                 localStorage.removeItem('accessToken');
+                setLoading(false);
             }
-            setLoading(false);
         });
         return () => {
             unsubscribe();
